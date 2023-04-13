@@ -10,11 +10,11 @@ class PageController extends Controller
     //Homepage
     public function homepage() {
         $trains = Train::all(); //prendo tutti i treni
-        $today = Train::where("start_time", "like", "2023-04-12%")->get(); //prendo i treni di oggi
+        $today = Train::where("start_time", "like", date("Y-m-d") . "%")->get(); //prendo i treni di oggi
         //Dati
         $data = [
-            "trains" => $trains,
-            "today" => $today
+            "trains" => $trains, //tutti i treni
+            "today" => $today //treni di oggi
         ];
         return view("welcome", $data); //restituisco la vista
     }
